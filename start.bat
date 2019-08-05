@@ -1,4 +1,4 @@
-start "mongod" "C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"
+start "mongod" "C:\Program Files\MongoDB\Server\4.0\bin\mongod.exe"
 
 cd server
 start npm start

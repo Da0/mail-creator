@@ -12,7 +12,8 @@ Creates email letters by template
 ## Запуск:
 - Натсроить файл конфигурации `server/src/config/config.js` (пример в server/readme.md)
 - на Windows:
-    - файл `start.bat`
+    - в файле `start.bat` указать путь к mongoDB
+    - запустить файл `start.bat`
 - Или:
     - клиентскую часть *(cd client)* командой `npm start --dev` <br />
     - серверную часть *(cd server)* командой `npm start` <br />
