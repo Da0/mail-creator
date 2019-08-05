@@ -1,0 +1,15 @@
+mixin heading(text, link)
+    - var marginBottom = (params && params.cardVariant === 1 ? '20px' : '0');
+
+    tr
+        td(align="center")
+            table(cellpadding="0", cellspacing="0", width="100%", style="margin-bottom: " + marginBottom + "; background-image: url('img/line.png'); background-repeat: repeat-x;")
+                tr
+                    td
+                        table(cellspacing="0", cellpadding="0", align="center", bgcolor="#ffffff")
+                            tr
+                                td(height="28", style="font-family: " + fontFamily + "; font-size: 23px; padding: 0 20px;")
+                                    if (link)
+                                        a(href=link, target="_blank", style="color: #333333; text-decoration: none;")!= text
+                                    else
+                                        !=text

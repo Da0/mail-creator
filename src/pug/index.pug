@@ -1,0 +1,130 @@
+extends layout.pug
+
+block content
+    if (params && params.greetings)
+        tr
+            td(align="center", style="padding-bottom: 5px; padding-left: 20px; padding-right: 20px; padding-top: 30px; padding-bottom: 20px; overflow: auto;")
+                h2(style="Margin:0; line-height: 26px; mso-line-height-rule: exactly; font-family: " + fontFamily + "; font-size: 20px; font-style: normal; font-weight: bold; color: #333333;")
+                    | <b> 💌@{ if IsEmpty(Recipient.OnlyStandardFirstName) }Здравствуйте!@{else}Здравствуйте, ${Recipient.OnlyStandardFirstName}!@{end if}</b>
+
+
+    each banner in banners
+        - var pic = (banner.pic ? 'img/' + banner.pic : 'img/main.jpg');
+        - var altText = (banner.title ? banner.title : heading);
+        - var link = (banner.link && banner.link !== 'null' ? banner.link : mainLink);
+
+            if (banner.type === 'count')
+                tr
+                    td( align=banner.textAlign, style="background-color: " + (banner.bg ? banner.bg : 'white') + "; color: " + (banner.color ? banner.color : '#333333') + "; padding: 10px 20px; font-family: " + fontFamily + "; font-size: 13px; line-height: 1.2;" )
+                        p( style="margin-top: 0; margin-bottom: 18px;" )!= banner.title
+                        if (banner.link)
+                            a( href=banner.link, target="_blank" )
+                                img.adapt-img( src=banner.countUrl, alt="", height="80", border="0", style="vertical-align: middle;" )
+                        else
+                            img.adapt-img( src=banner.countUrl, alt="", height="80", border="0", style="vertical-align: middle;" )
+
+            else if (banner.type === 'default')
+                +banner(pic, altText, link)
+                if (banner.text || banner.title)
+                    +text(banner.title, banner.textAlign, banner.text, banner.mute)
+                if (banner.promocodes && banner.promocodes.length)
+                    tr
+                        td(align="left", style="padding: 10px;")
+                            <!--[if mso]><table width="580" cellpadding="0" cellspacing="0"><tr><![endif]-->
+                            each promo, promoIndex in banner.promocodes
+                                - var even = promoIndex % 2 !== 0;
+
+                                if even
+                                    <!--[if mso]><td width="10"></td><![endif]-->
+                                <!--[if mso]><td width="285" valign="top"><![endif]-->
+                                table.table-responsive(width="285", cellspacing="0", cellpadding="0", class=(!even ? "es-left mb-20" : "es-right"), align="center", bgcolor="#ececec", style="background-color: mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:" + (!even ? "left" : "right" ) + ";")
+                                    tr
+                                        td(align="center", valign="middle", height="60", style="Margin:0;padding-bottom:10px;padding-left:20px;padding-right:20px;padding-top:15px;")
+                                            h2(style="Margin:0;line-height:24px;mso-line-height-rule:exactly;font-family: " + fontFamily + ";font-size:20px;font-style:normal;font-weight:normal;color:#990000;")!= promo.title
+                                    tr
+                                        td.es-m-txt-c(align="center", style="Margin:0;padding-top:0;padding-bottom:0;padding-left:20px;padding-right:20px;")
+                                            p(style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:10px;font-family:" + fontFamily + ";line-height:15px;color:#333333;")
+                                                span.product-description= promo.conditions
+                                    tr
+                                        td.es-m-txt-c(align="center", style="Margin:0;padding-top:20px;padding-bottom:20px;padding-left:20px;padding-right:20px;")
+                                            span.es-button-border.es-button-border_dashed(style="border-style:dashed;border-color:#72BF44;background:transparent;border-width:2px;display:inline-block;border-radius:0px;width:auto;")
+                                                - var promoLink = promo.link;
+                                                a.es-button.es-button-1557239660406(href=promoLink, target="_blank", style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family: " + fontFamily + ";font-size:20px;color:#040000;border-style:solid;border-color:#FFFFFF;border-width:5px 20px;display:inline-block;background:#FFFFFF;border-radius:0px;font-weight:normal;font-style:normal;line-height:24px;width:auto;text-align:center;")!= promo.code
+                                <!--[if mso]></td><![endif]-->
+            else if (banner.type === 'rassrochka')
+                - rassrochka = banner;
+
+    if (params && params.mainBtn)
+        +spacer(45)
+        tr
+            td(align="center")
+                table.flexible.w-80.center(cellpadding="0", cellspacing="0")
+                    tr
+                        td(align="center", valign="middle", bgcolor=primary, style="border: 2px solid " + primary + "; border-radius: 24px; mso-padding-alt: 10px 40px; font-family: " + fontFamily + "; font-size: 15px; line-height: 20px;")
+                            a(href=mainLink, target="_blank" style="display: block; padding: 10px 40px; color: #ffffff; text-decoration: none;")!= params.mainBtnText
+        +spacer(25)
+
+
+    tr
+        td(align="center", style="font-size: 0;")
+            table(width="100%", cellpadding="0", cellspacing="0", style="table-layout: fixed;")
+                each cat in goods
+                    +spacer(20)
+                    if (cat.title)
+                        +heading(cat.title, cat.link)
+
+                    if (cat.pic)
+                        +banner(('img/' + cat.pic), cat.title, cat.link, '585px')
+
+                    if (goodsTempl === 1)
+                        each item, index in cat.list
+                            - var i = index + 1;
+
+                            if (i === 1 || i % 4 === 0) /* 1-й и 4-й элемент начинаем оборачивать */
+                                <tr>
+                                <td style="padding-left: 20px; padding-right: 20px; padding-top: 30px; padding-bottom: 10px;">
+                                <!--[if mso]><table width="560" cellpadding="0" cellspacing="0"><tr><![endif]-->
+
+                            +goods-item(item, i, cat.listType)
+
+                            if (i % 3 === 0 || (cat.list.length % 3 !== 0 && cat.list.length === i)) /* каждый 3-й элемент закрываем */
+                                <!--[if mso]></tr></table><![endif]-->
+                                </td>
+                                </tr>
+
+                        +spacer(40)
+
+                    else
+                        each item, index in cat.list
+                            - var i = index + 1;
+
+                            if (i === 1 || i % 2 !== 0)
+                                <tr>
+                                <td class="row" style="padding: 0 12px;">
+
+                                <!--[if (gte mso 9)|(IE)]>
+                                <table width="100%" cellpadding="0" cellspacing="0" style="table-layout: fixed;">
+                                <tr>
+                                <![endif]-->
+
+                            +goods-item(item, i, cat.listType)
+
+                            if (i % 2 === 0 || (cat.list.length % 2 !== 0 && cat.list.length === i))
+
+                                <!--[if (gte mso 9)|(IE)]>
+                                </tr>
+                                </table>
+                                <![endif]-->
+
+                                </td>
+                                </tr>
+
+                        +spacer(40)
+
+                    if (cat.btn)
+                        +btn(cat.btn, cat.link)
+                        +spacer(20)
+
+
+//- +spacer(40)
+//- +btn(false, '#', false)

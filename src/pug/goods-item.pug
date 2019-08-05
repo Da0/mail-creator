@@ -1,0 +1,98 @@
+mixin goods-item(item, i, listType)
+    - var link = item.link;
+    - var title = item.title;
+    - var pic = item.pic;
+    - var float = (i % 3 === 0) ? "right" : "left";
+
+    if goodsTempl === 1
+        // Вариант 1
+        <!--[if mso]><td valign="top"><![endif]-->
+
+        table.es-left(cellpadding="0", cellspacing="0", border-collapse="collapse", border-spacing="0", align="left", style="width: auto; float: " + float + "; font-family: " + fontFamily + "; color: #333333;")
+            tr
+                td.pb-20(width="174", align="center", style="padding: 0; margin: 0;")
+                    table(width="100%", cellpadding="0", cellspacing="0", style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse; border-spacing: 0px; background-position: left top;")
+                        if pic
+                            tr
+                                td(align="center", height="140", valign="bottom")
+                                    a(href=link ? link : domain, target="_blank", style="text-decoration: none;")
+                                        img.adapt-img(src='img/' + pic, alt=title ? title : "", style="display: block; outline: none; max-width: 174px;", border="0")
+
+                        if title
+                            tr
+                                td.es-m-txt-c(height="24", align="center", valign="bottom", style="padding-bottom: 10px; padding-top: 20px; font-size: 13px; font-family: " + fontFamily + "; line-height: 12px; color: #333333;")
+                                    != title
+                                    if (item.descr)
+                                    p(style="margin:0; -webkit-text-size-adjust:none; -ms-text-size-adjust:none; mso-line-height-rule:exactly; font-size: 10px; font-family: " + fontFamily + "; line-height: 12px; color: #333333;")!=item.descr
+
+                        if item.oldPrice
+                            tr
+                                td(align="center", style="padding-bottom: 5px; font-size: 10px; font-family: " + fontFamily + "; line-height: 12px; color: #999999;")
+                                    item.oldPrice
+
+                        if item.price
+                            tr
+                                td(align="center", style="padding-top: 5px; padding-bottom: 5px; line-height: 24px; font-family: " + fontFamily + "; font-size: 20px; font-style: normal; font-weight: normal; color: #000000; border: 1px solid " + primary + ";")= item.price
+
+                        if item.cat
+                            tr
+                                td(align="center", style="padding-top: 10px;")
+                                    // span.es-button-border(style="border-style: solid; border-color: #000000; background: #ffffff none repeat scroll 0% 0%; border-width: 1px; display: block; width: auto;")
+                                    a.es-button(
+                                        href=item.catLink ? item.catLink : domain,
+                                        target="_blank",
+                                        style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly; font-family: " + fontFamily + ";font-size:14px; color:#ffffff; border-style:solid; border-color:" + primary + "; border-width:5px 0px; display:block; background:" + primary + " none repeat scroll 0% 0%; font-weight:normal; font-style:normal; line-height:17px; width:auto; text-align:center;"
+                                    )
+                                        !=item.cat
+
+                if (i === 1 || i % 4 === 0)
+                    td.es-hidden(width="20", style="padding:0;margin:0;")
+
+        <!--[if mso]></td><![endif]-->
+    else
+        // Вариант 2
+        <!--[if (gte mso 9)|(IE)]>
+        <td valign="top" style="padding: 0 12px;">
+        <![endif]-->
+
+        - var containerHeight = (listType === 'default') ? "155" : "215";
+        - var picWidth = (listType === 'default') ? "100%" : "auto";
+        - var picMaxWidth = "500px";
+
+        div.column(style="width:100%; max-width:264px; display: inline-block; vertical-align: top; margin-left: 12px; Margin-left: 12px; margin-right: 12px; Margin-right: 12px;")
+            table(cellpadding="0", cellspacing="0", width="100%", style="table-layout: fixed;")
+                tr
+                    td.active(align="center", height=containerHeight, style="padding: 15px 0;", valign="bottom")
+                        if pic
+                            a(href=link ? link : domain, target="_blank" style="text-decoration: none;")
+                                if pic
+                                    img.adapt-img(width=picWidth, src='img/' + pic, alt=title ? title : "", style="max-height: 138px; max-width: " + picMaxWidth + "; border: none;")
+
+                tr
+                    td(height="28", style="padding: 0 0 11px;", valign="top")
+                        table(cellpadding="0", cellspacing="0", border="0", width="100%")
+                            tr
+                                if item.price
+                                    td(style="font:bold 22px/24px " + fontFamily + "; color:#353430;")
+                                        = item.price
+                                        if item.oldPrice
+                                            | &nbsp;
+                                            span(style="text-decoration: line-through; font-size: 16px; font-weight: normal; vertical-align: baseline;")= item.oldPrice
+                                if item.discount
+                                    td(width="41", align="center", style="font:12px/16px " + fontFamily + "; color:#f92143; padding: 5px 1px; border: 1px solid #f92143; white-space: nowrap;")= item.discount
+
+                if (title)
+                    tr
+                        td.h-0(height="40", style="font:15px/20px " + fontFamily + "; color:#353430; padding: 0 0 15px;")!= title + (item.cat ? '<br />' + item.cat : '') + (item.descr ? '<br />' + item.descr : '')
+
+                if (item.link)
+                    tr
+                        td
+                            table.center(cellpadding="0", cellspacing="0")
+                                tr
+                                    td.btn-01(align="center", bgcolor="#ffffff", style="font:bold 15px/20px Arial, Helvetica, sans-serif; color:#fff; mso-padding-alt: 10px 35px; border: 2px solid " + primary + "; border-radius: 24px;")
+                                        a(href=link ? link : domain, target="_blank", style="text-decoration:none; color: " + primary + "; display: block; padding: 10px 35px;") Купить
+
+        <!--[if (gte mso 9)|(IE)]>
+        </td>
+        <![endif]-->

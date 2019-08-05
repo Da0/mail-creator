@@ -1,0 +1,9 @@
+mixin text(title, align, textContent, mute)
+    tr
+        td.mail-content(align=align ? align : 'center', style="font-family: " + fontFamily + "; padding: 10px 15px 15px;")
+            if (title)
+                h2(style="font-size: 15px; font-style: normal; font-weight: bold; color: #333333;")!= title
+            if textContent
+                div(style="font-size: 15px; line-height: 21px; color: #333333;")!= textContent
+            if mute
+                p(style="font-size: 12px; line-height: 21px; color: #ada7a7; margin-top: 1em; margin-bottom: 0;")!= mute

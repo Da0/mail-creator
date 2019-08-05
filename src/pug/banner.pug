@@ -1,0 +1,10 @@
+mixin banner(pic, altText, link, maxWidth)
+    - var newWidth = (maxWidth ? maxWidth: '100%');
+
+    tr
+        td(align="center")
+            if (link && link !== 'null')
+                a(href=link, target="_blank", style="text-decoration: none;")
+                    img.adapt-img(src=pic, width="600", border="0", style="margin: 0; padding: 0; border: none; display: block; max-width: " + newWidth + ";", alt=altText)
+            else
+                img.adapt-img(src=pic, width="600", border="0", style="margin: 0; padding: 0; border: none; display: block; max-width: " + newWidth + ";", alt=altText)

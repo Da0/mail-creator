@@ -1,0 +1,5 @@
+mixin menu-item(item)
+    - var color = !item.sale ? '#000' : primary;
+    <!--[if mso]><td align="center" style="padding: 0 9px;"><![endif]-->
+    a(href=item.link, target="_blank", style="font:bold 15px/25px " + fontFamily + "; display: inline-block; text-decoration: none; color: " + color + "; padding-left: 9px; padding-right: 9px;")!= item.title
+    <!--[if mso]></td><![endif]-->

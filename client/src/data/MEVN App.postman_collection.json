@@ -1,0 +1,158 @@
+{
+	"info": {
+		"name": "MEVN App",
+		"_postman_id": "683fae61-dd1c-831e-002e-38a362e11201",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"Second Post\",\n\t\"description\": \"Content of Second Post\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8081/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"posts"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Read All Posts",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"Fifth Post\",\n\t\"description\": \"Content of Fifth Post\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8081/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"posts"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Read Single Post",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"Fifth Post\",\n\t\"description\": \"Content of Fifth Post\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8081/posts/5a55efc7558a2a16b7a7b125",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"posts",
+						"5a55efc7558a2a16b7a7b125"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Update Single Post",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"Post edited\",\n\t\"description\": \"Content of Post edited\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8081/posts/5a55ebcf558a2a16b7a7b123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"posts",
+						"5a55ebcf558a2a16b7a7b123"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Single Post",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8081/posts/5a55ebcf558a2a16b7a7b123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"posts",
+						"5a55ebcf558a2a16b7a7b123"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

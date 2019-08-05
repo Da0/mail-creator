@@ -1,0 +1,27 @@
+mixin btn(text, link, color)
+    if !link
+        - var link = mainLink;
+    if !text
+        - var text = 'Показать еще';
+    if !color
+        - var color = primary;
+    tr
+        td.row(align="center", style="padding: 0;")
+            center.column
+                table(cellpadding="0", cellspacing="0", align="center", style="color: #333333;")
+                    tr
+                        if (goodsTempl === 1)
+                            td(align="center", style="padding-left: 35px; padding-right: 35px; font-family: " + fontFamily + ";")
+                                //span.es-button-border.es-button-border_hover(style="border-style:solid;border-color:#CCCCCC;background:#FFFFFF;border-width:2px;display:inline-block;border-radius:5px;width:auto;")
+                                a.es-button(
+                                    href=mainLink,
+                                    target="_blank",
+                                    style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:" + fontFamily + ";font-size:14px;color:#ffffff; border-style:solid;border-color:" + primary + ";border-width:10px 20px;display:inline-block;background:" + primary + "; font-weight:normal; font-style:normal;line-height:17px;width:auto;text-align:center;"
+                                )!= text
+                        else
+                            td(align="center", style="font-family: " + fontFamily + ";")
+                                table.center(align="center", cellpadding="0", cellspacing="0", style="margin: 0 auto;")
+                                    tr
+                                        td.active(align="center", bgcolor=color, style="font:bold 15px/20px " + fontFamily + "; color:#fff; mso-padding-alt:10px 40px; border: 2px solid " + color + "; border-radius: 24px;")
+                                            a.btn(href=link, style="text-decoration:none; color:#fffffe; display:block; padding:10px 40px; word-wrap: normal!important;", target="_blank")!= text
+

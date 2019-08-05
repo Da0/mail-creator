@@ -1,0 +1,237 @@
+@media only screen and (max-width:600px) {
+    .adapt-img {
+        width: 100% !important;
+        height: auto !important;
+        max-width: 100%!important;
+        max-height: none!important;
+    }
+    .preheader-link a,
+    .mobile-content a,
+    a.es-button,
+    .mail-footer p,
+    .rassrochka-text p,
+    .mail-content h3,
+    .mail-content p,
+    .mail-content div {
+        font-size: 13px!important;
+        line-height: 20px!important
+    }
+    .rassrochka-image-wrap {
+        max-width: 600px!important;
+    }
+
+    .tflex,
+    .tflex > tbody,
+    .tflex > thead {
+        display: block !important;
+        width: 100% !important;
+    }
+    .ac {
+        text-align: center !important;
+    }
+    .h-0 {
+        height: 0 !important;
+    }
+    .plr-15 {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    .pb-20 {
+        padding-bottom: 20px !important;
+    }
+    .center {
+        margin: 0 auto !important;
+        float: none !important;
+    }
+    .w-80 {
+        width: 80% !important;
+    }
+    .mb-20 {
+        margin-bottom: 20px!important;
+    }
+    .mt-20 {
+        margin-top: 20px!important;
+    }
+
+    .es-mobile-hidden,
+    .es-hidden {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        padding: 0 !important;
+        font-size: 0 !important;
+        line-height: 0 !important;
+    }
+    .es-desk-hidden {
+        display: table-row!important;
+        width: auto!important;
+        overflow: visible!important;
+        float: none!important;
+        max-height: inherit!important;
+        line-height: inherit!important
+    }
+    .btn {
+        padding-left: 20px!important;
+        padding-right: 20px!important;
+    }
+
+    table.es-social,
+    table.es-social td {
+        display: inline-block!important
+    }
+
+    h2 {
+        font-size: 20px!important;
+        text-align: center;
+        line-height: 120%!important
+    }
+    h3, .mobile-content {
+        text-align: center!important;
+    }
+    h2 a {
+        font-size: 26px!important
+    }
+    h3 a {
+        font-size: 20px!important
+    }
+
+    .es-left,
+    .es-right {
+        width: 100%!important
+    }
+    /* .table-responsive,
+    .table-responsive > tbody,
+    .table-responsive > thead,
+    .table-responsive > tbody > tr,*/
+    .column {
+        margin-left: 0!important;
+        Margin-left: 0!important;
+        Margin-right: 0!important;
+        margin-right: 0!important;
+        display: inline-block!important;
+        width: 100%!important;
+        max-width: 600px!important;
+        table-layout: fixed;
+        height: auto !important;
+        padding: 0!important;
+    }
+    .row {
+        padding-left: 24px!important;
+        padding-right: 24px!important;
+    }
+
+    .es-button-border {
+        display: block!important
+    }
+    a.es-button {
+        font-size: 20px!important;
+        display: block!important;
+        border-left-width: 0!important;
+        border-right-width: 0!important
+    }
+
+
+    .es-m-txt-c,
+    .es-m-txt-c h1,
+    .es-m-txt-c h2,
+    .es-m-txt-c h3 {
+        text-align: center!important
+    }
+}
+
+body{
+    -webkit-text-size-adjust:100%;
+    -ms-text-size-adjust:100%;
+}
+
+a[x-apple-data-detectors] {
+    color: inherit!important;
+    text-decoration: none!important;
+    font-size: inherit!important;
+    font-family: inherit!important;
+    font-weight: inherit!important;
+    line-height: inherit!important;
+}
+
+a[href^="tel"]:hover {
+    text-decoration: none !important;
+}
+
+table td {
+    mso-line-height-rule: exactly;
+}
+
+a img {
+    border: none;
+}
+
+th {
+    padding: 0;
+}
+
+a {
+    outline: none;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none !important;
+}
+
+#outlook a {
+    padding: 0;
+}
+
+.h-u a:hover {
+    text-decoration: underline !important;
+}
+
+.btn-01:hover {
+    background-color: #f7f7f7 !important;
+}
+
+.active a:hover {
+    opacity: 0.8;
+}
+
+.btn-01,
+.active a {
+    transition: all 0.3s ease;
+}
+
+ul {
+    Margin: 0 0 0 20px;
+    padding: 0;
+}
+
+.es-desk-hidden {
+    display: none;
+    float: left;
+    overflow: hidden;
+    width: 0;
+    max-height: 0;
+    line-height: 0;
+    mso-hide: all;
+}
+
+.es-button {
+    mso-style-priority: 100!important;
+    text-decoration: none!important;
+}
+
+td .es-button-border_dashed:hover {
+    border-style: solid solid solid solid!important;
+}
+
+.ExternalClass{
+    width:100%;
+}
+
+.ExternalClass,
+.ExternalClass p,
+.ExternalClass span,
+.ExternalClass font,
+.ExternalClass td,
+.ExternalClass div{
+    line-height: 100%;
+}

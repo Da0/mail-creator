@@ -1,0 +1,6 @@
+mixin menu-bottom(item, lastItem)
+    - var color = !item.sale ? '#333333' : primary;
+    - var itemClass = 'tflex' + (!lastItem ? ' pb-20' : '');
+
+    td(align="center", valign="middle", class=itemClass)
+        a(href=item.link, target="_blank", style="font-size: 18px; line-height: 22px; background: #E9E8E3; border-color: #E9E8E3; border-style: solid; border-width: 20px; text-decoration: none; display: block; text-align: center; color: " + color + "; font-family: " + fontFamily + "; mso-style-priority: 100 !important; -webkit-text-size-adjust: none; -ms-text-size-adjust: none; mso-line-height-rule: exactly;")= item.title

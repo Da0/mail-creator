@@ -1,0 +1,7 @@
+mixin top-menu()
+    tr
+        td(align="center", class="h-u fs-01 plr-15", style="padding:15px 0;", bgcolor=bodyBg)
+            <!--[if mso]><table style="margin-left: auto; margin-right: auto; width: auto;"><tr><![endif]-->
+            each item in params.catalog
+                +menu-item(item)
+            <!--[if mso]></tr></table><![endif]-->
