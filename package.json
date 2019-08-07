@@ -1,16 +1,16 @@
 {
-  "name": "mail-hmm",
+  "name": "mail-creator",
   "version": "1.0.0",
-  "description": "Homeme e-mail builder",
+  "description": "e-mail builder",
   "dependencies": {
     "browser-sync": "^2.26.7",
     "empty-folder": "^2.0.3",
     "express": "^4.17.1",
     "gm": "^1.23.1",
     "imagemin": "^5.3.1",
-    "imagemin-jpegtran": "^5.0.2",
-    "imagemin-pngquant": "^6.0.0",
-    "mongodb": "^2.2.19",
+    "imagemin-jpegtran": "^6.0.0",
+    "imagemin-pngquant": "^6.0.1",
+    "mongodb": "^2.2.36",
     "nodemon": "^1.19.1",
     "pug": "^2.0.4"
   },
@@ -19,5 +19,7 @@
     "start": "nodemon  ./app.js"
   },
   "author": "d.kalachev",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": "github:Da0/mail-creator",
+  "private": true
 }
