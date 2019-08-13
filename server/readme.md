@@ -1,4 +1,4 @@
-<h3>Конфигурация в src/config/config.js
+<h3>Пример конфигурации в src/config/config.js
 
 <pre>
 module.exports = {
