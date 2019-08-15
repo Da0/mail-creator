@@ -16,9 +16,7 @@ app.use(require('./routes/routes'));
 
 app.use(express.static(__dirname + '/public'));
 
-console.log(config.dbURL);
-
-mongoose.connect(config.dbURL, config.dbOptions);
+mongoose.connect(config.dbURL + '/' + config.dbName, config.dbOptions);
 mongoose.connection
   .once('open', () => {
     console.log(`Mongoose - successful connection ...`);

@@ -29,10 +29,7 @@ const PostSchema = new Schema({
       discount: String,
       price: String,
       oldPrice: String,
-      trimImgs: {
-          type: Boolean,
-          default: false
-      }
+      trimImgs: Boolean
     }
   ]
 });

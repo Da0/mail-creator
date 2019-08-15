@@ -36,7 +36,7 @@
                             input( type="hidden", name="pic", v-model.trim="item.pic" )
                         p
                             label
-                                input.trim( type="checkbox", name="trimImgs", v-bind:checked="addTrim" )
+                                input.trim( type="checkbox", name="trimImgs", v-bind:checked="item.trimImgs !== undefined ? item.trimImgs : addTrim", @change.prevent="onTrimChange" )
                                 abbr( title="Установить ДО загрузки изобржения" ) Обрезать пустое пространство
 
                 .form-group.form-group_prices
@@ -80,7 +80,7 @@
                 this.$emit('remove', this.index);
             },
             async onFileChange() {
-                const trimImgs = !this.item.trimImgs ? 'false' : this.item.trimImgs.toString();
+                const trimImgs = this.item.trimImgs !== undefined ? this.item.trimImgs.toString() : this.addTrim.toString();
 
                 this.image = this.$refs.file.files[0];
 
@@ -88,11 +88,18 @@
 
                 formData.append('file', this.image);
 
-                PostsService.imgLoad(formData, trimImgs);
+                PostsService
+                    .imgLoad(formData, trimImgs)
+                    .then(e => {
+                        console.log(e);
+                    });
 
                 this.$emit('addImg', this.image.name, this.index);
 
                 this.createImage();
+            },
+            onTrimChange(e) {
+                this.$emit('changeTrim', e.target.checked, this.index);
             },
             createImage() {
                 let image = new Image();

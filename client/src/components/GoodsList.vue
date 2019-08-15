@@ -28,14 +28,21 @@
             label.col-sm-3.control-label Тип листинга
             .col-sm-9
                 label.radio-inline
-                    input( type="radio" name="listType" value="default", v-model="post.listType" )
+                    input( type="radio" name="listType" value="default", v-model="post.listType", @change="listTypeChange" )
                     | По умолчанию
                 label.radio-inline
-                    input( type="radio" name="listType" value="korpus", v-model="post.listType" )
+                    input( type="radio" name="listType" value="korpus", v-model="post.listType", @change="listTypeChange" )
                     | Корпусная мебель
 
         .form-group.row
-            GoodsItem( v-for="(n, index) in post.list", :item="n", :index="index", :key="n.id", v-on:remove="removeFromList", v-on:addImg="addImgItem", :addTrim="post.listType !== 'default'" )
+            GoodsItem(
+                v-for="(n, index) in post.list",
+                :item="n", :index="index", :key="n.id",
+                v-on:remove="removeFromList",
+                v-on:addImg="addImgItem",
+                v-on:changeTrim="changeTrimItem",
+                :addTrim="getTrim()"
+             )
 
         button.btn.btn-block.btn-info( type="button", @click="addGoods")
             i.glyphicon.glyphicon-plus
@@ -160,6 +167,18 @@
                 }
 
                 this.post.list[ind].pic = imgName;
+            },
+            changeTrimItem(trimvVal, ind) {
+                this.post.list[ind].trimImgs = trimvVal;
+            },
+            listTypeChange() {
+                const isTrim = this.getTrim();
+                this.post.list.forEach(function(item) {
+                    item.trimImgs = isTrim;
+                });
+            },
+            getTrim() {
+                return this.post.listType !== 'default'
             },
             async categoryPicChange() {
                 this.image = this.$refs.file.files[0];

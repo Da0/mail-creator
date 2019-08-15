@@ -8,7 +8,7 @@ module.exports = {
   port: 9081,
   srcPort: 9082,
   buildPort: 9083,
-  dbURL: 'mongodb://localhost/articles',
+  dbURL: 'mongodb://localhost/',
   dbOptions: {
     // useMongoClient: true,
     useNewUrlParser: true

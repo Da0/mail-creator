@@ -6,6 +6,7 @@ const path = require('path');
 const resize = require('../img/img-resize');
 const fs = require('fs');
 const imgDelete = require('../img/img-delete');
+// const sharp = require('sharp');
 const Jimp = require("jimp");
 
 router.use(fileUpload());// use express-fileupload as default parser for multipart/form-data encoding
@@ -104,12 +105,21 @@ router.delete('/:id', (req, res) => {
 // => img upload
 router.post('/img:trim', (req, res) => {
   if (req.files) {
-      let imageFile = req.files.file;
-      let imageData = req.files.file.data;
-      let name = imageFile.name;
-      let uploadpath = path.join(__dirname, '../../../build/img/', name);
-      let maxWidth = 500;
-      let maxHeight = 500;
+      const imageFile = req.files.file;
+      let imageData = imageFile.data;
+      const name = imageFile.name;
+      const uploadpath = path.join(__dirname, '../../../build/img/', name);
+      const maxWidth = 500;
+      const maxHeight = 500;
+
+      console.log(imageFile);
+
+      // if (imageFile.mimetype === 'image/webp' || imageFile.mimetype === 'image/png') {
+      //     imageData = sharp(imageData)
+      //         .toFile('output.jpg')
+      //         .toBuffer();
+      // }
+
 
       Jimp.read(imageData)
           .then(function (image) {

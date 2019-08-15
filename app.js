@@ -48,12 +48,12 @@ app.get('/', (req, res, next) => {
     });
 });
 
-mongoClient.connect(config.dbURL, function (err, database) {
+mongoClient.connect(config.dbURL, function (err, client) {
     if (err) {
         return console.log(err)
     }
 
-    db = database;
+    db = client.db(config.dbName);
 
     app.listen(config.srcPort, () => console.log(`App started on port ${config.srcPort}`)) // => use callback function
 });
