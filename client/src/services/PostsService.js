@@ -24,8 +24,8 @@ export default {
           'Content-Type': 'multipart/form-data'
         }
       }
-    ).then(function(){
-      console.log('SUCCESS!!');
+    ).then(function(e){
+      console.log('SUCCESS!!', e.data.picName);
     })
     .catch(function(){
       console.log('FAILURE!!');

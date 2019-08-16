@@ -6,7 +6,7 @@ const path = require('path');
 const resize = require('../img/img-resize');
 const fs = require('fs');
 const imgDelete = require('../img/img-delete');
-// const sharp = require('sharp');
+const sharp = require('sharp');
 const Jimp = require("jimp");
 
 router.use(fileUpload());// use express-fileupload as default parser for multipart/form-data encoding
@@ -107,41 +107,54 @@ router.post('/img:trim', (req, res) => {
   if (req.files) {
       const imageFile = req.files.file;
       let imageData = imageFile.data;
-      const name = imageFile.name;
+      const name = imageFile.name.split('.', 1)[0] + '.jpg';
       const uploadpath = path.join(__dirname, '../../../build/img/', name);
       const maxWidth = 500;
       const maxHeight = 500;
 
-      console.log(imageFile);
+      const imgPromise = new Promise((resolve) => {
+          if (imageFile.mimetype === 'image/webp' || imageFile.mimetype === 'image/png') {
+              return sharp(imageData)
+                  .jpeg({
+                      quality: 100,
+                      chromaSubsampling: '4:4:4'
+                  })
+                  .toBuffer()
+                  .then( newBuffer => {
+                      resolve(newBuffer);
+                  });
+          }
+          else {
+              resolve(imageData)
+          }
+      });
 
-      // if (imageFile.mimetype === 'image/webp' || imageFile.mimetype === 'image/png') {
-      //     imageData = sharp(imageData)
-      //         .toFile('output.jpg')
-      //         .toBuffer();
-      // }
-
-
-      Jimp.read(imageData)
+      imgPromise
+          .then(newImg => {
+              return Jimp.read(newImg)
+          })
           .then(function (image) {
+              console.log('Jimp', image);
               if (req.params.trim === ':true') {
                   image.autocrop()
               }
 
               image.getBuffer(Jimp.MIME_JPEG, function (e, buffer) {
-                  resize(buffer, name, maxWidth, maxHeight)
+                  resize(buffer, maxWidth, maxHeight)
                       .then(function(outputBuffer) {
                           fs.writeFile(uploadpath, outputBuffer, err => {
                               if (err) {
                                   return res.status(500).send(err);
                               }
                               else {
-                                  return res.status(200).send({ pic: outputBuffer });
+                                  return res.status(200).send({ picName: name });
                               }
                           })
                       });
               })
 
-          }).catch(function (err) {
+          })
+          .catch(function (err) {
               res.status(500).send(err);
           });
   }

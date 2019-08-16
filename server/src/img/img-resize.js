@@ -1,6 +1,6 @@
 const sharp = require('sharp');
 
-module.exports = function resize(pic, name, width, height) {
+module.exports = function resize(pic, width, height) {
     return sharp(pic)
         .resize(width, height, {
             fit: 'inside',

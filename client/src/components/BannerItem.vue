@@ -123,6 +123,7 @@
                 colorType: 'text',
                 image: '',
                 banner: {
+                    type: this.edit ? null : 'default',
                     promocodes: []
                 },
                 config: require('../../../server/src/config/config')

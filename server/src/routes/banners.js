@@ -113,7 +113,7 @@ router.post('/img', (req, res) => {
             name = imageFile.name,
             uploadpath = path.join(__dirname, '../../../build/img/', name);
 
-        return resize(imageData, name, 600, null)
+        return resize(imageData, 600, null)
             .then(function(outputBuffer) {
                 // outputBuffer contains upside down, 300px wide, alpha channel flattened
                 // onto orange background, composited with overlay.png with SE gravity,

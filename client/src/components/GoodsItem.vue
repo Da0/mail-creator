@@ -85,16 +85,17 @@
                 this.image = this.$refs.file.files[0];
 
                 let formData = new FormData();
+                let imgName = this.image.name;
+
+                if (this.image.type === 'image/webp' || this.image.type === 'image/png') {
+                    imgName = imgName.split('.', 1)[0] + '.jpg'
+                }
 
                 formData.append('file', this.image);
 
-                PostsService
-                    .imgLoad(formData, trimImgs)
-                    .then(e => {
-                        console.log(e);
-                    });
+                await PostsService.imgLoad(formData, trimImgs);
 
-                this.$emit('addImg', this.image.name, this.index);
+                this.$emit('addImg', imgName, this.index);
 
                 this.createImage();
             },

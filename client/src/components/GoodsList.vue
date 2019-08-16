@@ -191,7 +191,7 @@
 
                 BannersService.imgLoad(formData);
 
-                if ( oldPic && oldPic !== imgName) {
+                if (oldPic && oldPic !== imgName) {
                     BannersService.imgDelete(oldPic);
                 }
 
