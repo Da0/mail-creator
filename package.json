@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "e-mail builder",
   "dependencies": {
-    "browser-sync": "^2.26.7",
+    "browser-sync": "^2.27.10",
     "empty-folder": "^2.0.3",
     "express": "^4.17.1",
     "gm": "^1.23.1",
