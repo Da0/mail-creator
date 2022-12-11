@@ -5,7 +5,7 @@
   "dependencies": {
     "browser-sync": "^2.26.7",
     "empty-folder": "^2.0.3",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "gm": "^1.23.1",
     "imagemin": "^7.0.0",
     "imagemin-jpegtran": "^6.0.0",
